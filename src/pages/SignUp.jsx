@@ -26,6 +26,7 @@ function SignUp() {
 
         const response = await axios.post('http://localhost:8080/user/sign-up', data)
         setVerified(response.data.status)
+        localStorage.setItem('_id',response.data.data._id)
         navigate('/home')
     } catch (error) {
         console.log(error)
@@ -67,7 +68,7 @@ function SignUp() {
               <div>
                 <div className="mt-2">
                   <input
-                    className="flex h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-sm placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex text-white h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-md placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="text"
                     placeholder="FullName"
                     value={fullName}
@@ -79,7 +80,7 @@ function SignUp() {
 
                 <div className="mt-2">
                   <input
-                    className="flex h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-sm placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex text-white h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-md placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -92,7 +93,7 @@ function SignUp() {
               <div>
                 <div className="mt-2">
                   <input
-                    className="flex h-10 w-full rounded-3xl p-6  border-2 border-cyan-500 bg-transparent text-sm placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex text-white h-10 w-full rounded-3xl p-6  border-2 border-cyan-500 bg-transparent text-md placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
                     value={password}

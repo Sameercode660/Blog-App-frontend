@@ -1,7 +1,40 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import useLoginContext from "../context/LoginContext";
+import axios from "axios";
 
 function Login() {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const navigate = useNavigate()
+  const {setVerified} = useLoginContext()
+
+  async function handleLogIn() {
+    try {
+      if(!email || !password) {
+        alert('Anyone field is empty')
+        return 
+      }
+
+      const data = {
+        email,
+        password
+      }
+
+      const response = await axios.post('http://localhost:8080/user/sign-in',data)
+
+      setVerified(response.data.status)
+      localStorage.setItem('_id',response.data.data._id)
+      if(response.data.status) {
+        navigate('/home')
+      }
+
+    } catch (error) {
+      console.log(error)
+      alert('Enter correct credentials')
+    }
+  }
   return (
     <section
      className="w-[100vw] h-[100vh] flex justify-center items-centerbg-no-repeat object-cover fixed top-0 left-0 right-0 bottom-0"
@@ -33,18 +66,26 @@ function Login() {
               <div>
                 <div className="mt-2">
                   <input
-                    className="flex h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-sm placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex text-white  h-10 w-full rounded-3xl p-6 border-2 border-cyan-500 bg-transparent text-md placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                    }}
                   />
                 </div>
               </div>
               <div>
                 <div className="mt-2">
                   <input
-                    className="flex h-10 w-full rounded-3xl p-6  border-2 border-cyan-500 bg-transparent text-sm placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+                    className="flex text-white h-10 w-full rounded-3xl p-6  border-2 border-cyan-500 bg-transparent text-md placeholder:text-white focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
                   />
                 </div>
               </div>
@@ -52,6 +93,7 @@ function Login() {
                 <button
                   type="button"
                   className="inline-flex w-full items-center justify-center rounded-3xl bg-white px-3.5 py-2.5 font-semibold leading-7 text-black hover:text-white hover:bg-black border-2 "
+                  onClick={handleLogIn}
                 >
                   LogIn
                 </button>
