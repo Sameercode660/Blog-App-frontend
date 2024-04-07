@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import AllBlog from "../pages/AllBlog";
 import MyBlog from "../pages/MyBlog";
 import PostBlog from "../pages/PostBlog";
+import Main from "../pages/Main";
 
 
 export const router = createBrowserRouter([
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
         path: '/home',
         element: <Protected> <Home> </Home> </Protected>,
         children: [
+            {
+                path: '',
+                element: <Main></Main>
+            },
+
             {
                 path: 'allblog',
                 element: <AllBlog></AllBlog>
