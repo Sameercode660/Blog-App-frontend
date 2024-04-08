@@ -27,7 +27,7 @@ function MyBlog() {
       {
         loading ? <p>Loading...</p> : (
           data.map((element) => (
-            <BlogCart key={element._id} user={element.user} title={element.title} description={element.description}></BlogCart>
+            <BlogCart key={element._id} blogId={element._id} user={element.user} title={element.title} description={element.description}></BlogCart>
             
           ))
         )

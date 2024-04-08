@@ -7,6 +7,7 @@ import AllBlog from "../pages/AllBlog";
 import MyBlog from "../pages/MyBlog";
 import PostBlog from "../pages/PostBlog";
 import Main from "../pages/Main";
+import CommentSection from "../pages/CommentSection";
 
 
 export const router = createBrowserRouter([
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             {
                 path: 'post-blog',
                 element: <PostBlog></PostBlog>
+            },
+            {
+                path: 'CommentSection/:blogId/:userId',
+                element: <CommentSection></CommentSection>
             }
         ]
     }
