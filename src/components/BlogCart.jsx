@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function BlogCart({blogId, user, title, description}) {
+function BlogCart({blogId, user, title, description, image}) {
   return (
     <div className="w-full border border-gray-400 rounded-3xl p-5 m-2">
         <div>
@@ -9,6 +9,9 @@ function BlogCart({blogId, user, title, description}) {
         </div>
       <div className="m-1">
         <h1 className="text-3xl">{title}</h1>
+      </div>
+      <div className="w-full">
+        <img src={image} alt=""  className="w-full"/>
       </div>
       <div className="m-1">
         <p>{description}</p>

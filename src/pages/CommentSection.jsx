@@ -96,6 +96,7 @@ function CommentSection() {
           user={data.user}
           title={data.title}
           description={data.description}
+          image={data.image}
         ></BlogCart>
       )}
       <div>
